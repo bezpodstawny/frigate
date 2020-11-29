@@ -201,7 +201,7 @@ class CameraState():
                 now = datetime.datetime.now().timestamp()
                 # if the object is a higher score than the current best score 
                 # or the current object is older than desired, use the new object
-                if obj_copy['score'] > current_best['score'] or (now - current_best['frame_time']) > self.config.get('best_image_timeout', 60):
+                if obj_copy['score'] > current_best['score'] and (now - current_best['frame_time']) > self.config.get('best_image_timeout', 60):
                     obj_copy['frame'] = np.copy(current_frame)
                     self.best_objects[object_type] = obj_copy
                     for c in self.callbacks['snapshot']:
